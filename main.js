@@ -11,7 +11,8 @@ const worker = new Worker('./worker.js', {
 
 // Wait for the worker to complete its task
 console.log('Main thread: Waiting for signal...');
-Atomics.wait(sharedArray, 0, 0); // Wait until the value at index 0 changes
+let waitReturn = Atomics.wait(sharedArray, 0, 0); // Wait until the value at index 0 changes
+console.log(`waitReturn: ${waitReturn}`)
 console.log('Main thread: Received signal!');
 
 // Read the updated value
